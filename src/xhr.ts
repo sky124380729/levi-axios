@@ -9,6 +9,14 @@ export default function xhr(config:AxiosRequestConfig) {
 
   request.open(method.toUpperCase(),url,true)
 
+  request.onreadystatechange = function handleLoad() {
+    if(request.readyState !== 4) {
+      return
+    }
+
+  }
+
+
   Object.keys(headers).forEach(name=>{
     if(data === null && name.toLowerCase() === 'content-type') {
       delete headers[name]
